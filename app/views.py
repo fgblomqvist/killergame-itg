@@ -38,7 +38,7 @@ def home():
 @app.route('/players')
 def players():
 
-    players = models.Player.query.all()
+    players = models.Player.query.order_by(models.Player.score.desc()).all()
 
     return render_template('players.html', players=players)
 
