@@ -1,4 +1,6 @@
 /.idea/
+players.sqlite
+
 *~
 
 *.py[cod]
