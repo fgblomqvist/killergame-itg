@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-    <ul>
-        {% for player in players %}
-            <li>{{ player.name }} - {{ player.score }} pts</li>
-        {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                <tr class="{{ 'danger' if not player.offer_id }}">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.score }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
