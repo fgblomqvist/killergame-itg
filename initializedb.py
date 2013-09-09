@@ -27,11 +27,13 @@ elif argv[1] == 'assign':
 
     available_offers = db.session.query(models.Player.id).all()
 
-    for player in models.Player.query.all():
-        while True:
-            i = random.randint(0, (len(available_offers) - 1))
-            if player.id != available_offers[i].id:
-                player.offer_id = available_offers.pop(i).id
-                break
+    players = models.Player.query.all()
+    random.shuffle(players)
+
+    previous = players[-1]
+
+    for player in players:
+        player.offer_id = previous.id
+        previous = player
 
     db.session.commit()
