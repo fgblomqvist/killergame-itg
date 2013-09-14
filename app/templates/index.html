@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form class="form-inline" method="post">
-        <input class="form-control" type="text" name="killer" placeholder="Killer">
-        <input class="form-control" type="text" name="victim" placeholder="Victim">
-        <input class="btn btn-default" type="submit" value="Confirm">
+    <h1 class="title">ITG Södertörn Killergame</h1>
+    <p>Välkommen!</p>
+    <p>Scanna ditt kort för att se information och verifiera mord</p>
+    <form class="form-inline form-hidden" method="post" action="/player">
+        <input class="form-control" type="text" name="player" autofocus>
     </form>
 {% endblock %}

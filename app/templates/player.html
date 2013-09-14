@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section>
+        <h1 class="stats-h1">Name</h1>
+        <p class="stats-p">{{ player.name }}</p>
+    </section>
+    <section>
+        <h1 class="stats-h1">Poäng</h1>
+        <p class="stats-p">{{ player.score }}</p>
+    </section>
+    <section>
+    {% if target.name %}
+        <h1 class="stats-h1">Måltavla</h1>
+        <p class="stats-p">{{ target.name }}</p>
+        <p>Scanna din måltavlas kort för att bekräfta att du mördat personen</p>
+    {% else %}
+        <h1>Du har blivit mördad</h1>
+    {% endif %}
+        <p>Scanna ditt eget kort igen för att logga ut</p>
+        <form class="form-inline form-hidden" method="post" action="/confirm">
+            <input type="hidden" name="player" value="{{ player.id }}">
+            <input class="form-control" type="text" name="target" autofocus>
+        </form>
+    </section>
+{% endblock %}
