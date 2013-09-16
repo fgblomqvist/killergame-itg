@@ -76,17 +76,17 @@ def confirm():
     # transfer the target
     killer.offer_id = target.offer_id
 
-    # declare the victim as dead by setting its offer_id to None
-    target.offer_id = None
-
     # check if the target ended up at third place
-    if models.Player.query.filter(models.Player.offer_id is not None).count() == 2:
+    if models.Player.query.filter(models.Player.offer_id != None).count() == 3:
         target.offer_id = 3
+    else:
+        # just set it as dead
+        target.offer_id = None
+
+    db.session.commit()
 
     # fetch the info about the new target
     target = models.Player.query.filter(models.Player.id == killer.offer_id).one()
-
-    db.session.commit()
 
     return render_template('target_killed.html', player=killer, target=target)
 
