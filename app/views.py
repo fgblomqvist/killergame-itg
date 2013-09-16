@@ -13,12 +13,12 @@ def player():
     try:
         player_id = int(request.form['player'])
     except ValueError:
-        return 'Invalid player ID'
+        return render_template('invalid_input.html')
 
     try:
         player = models.Player.query.filter(models.Player.id == player_id).one()
     except orm.exc.NoResultFound:
-        return "A player with this ID doesn't exist"
+        return render_template('invalid_id.html')
 
     if player.offer_id:
         target = models.Player.query.filter(models.Player.id == player.offer_id).one()
@@ -43,7 +43,7 @@ def confirm():
         killer_id = int(request.form['player'])
         target_id = int(request.form['target'])
     except ValueError:
-        return 'Invalid data!'
+        return render_template('invalid_input.html')
 
     # if the ids match, go back to home
     if killer_id == target_id:

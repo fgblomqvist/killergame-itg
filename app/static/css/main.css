@@ -4,7 +4,7 @@ body {
 }
 
 .wrapper {
-    width: 700px;
+    width: 1000px;
     margin: 0 auto;
     text-align: center;
 }
@@ -37,6 +37,12 @@ h1 {
 
 .large {
     font-size: 40px;
+    font-weight: bold;
+}
+
+.winner {
+    margin-top: 0;
+    font-size: 80px;
     font-weight: bold;
 }
 
