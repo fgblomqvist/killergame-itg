@@ -1,10 +1,10 @@
 body {
-    background-image: url(/static/img/dark_dotted.png);
-    color: #999;
+    background: #404040 url(/static/img/noisy.png);
+    color: #222;
 }
 
 .wrapper {
-    width: 500px;
+    width: 700px;
     margin: 0 auto;
     text-align: center;
 }
@@ -21,16 +21,35 @@ body {
         cursor: default;
     }
 
+p {
+    font-size: 18px;
+}
+
+h1 {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.inset {
+    text-shadow: 0 1px 2px #666;
+}
+
+
+.large {
+    font-size: 40px;
+    font-weight: bold;
+}
+
 .title {
     margin-bottom: 30px;
-}
-
-.stats-h1 {
-    margin-bottom: 0;
-    font-size: 13px;
-}
-
-.stats-p {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
+}
+
+.alive-scan-info {
+    margin-top: 50px;
+}
+
+.killed-msg {
+    margin-bottom: 40px;
 }
