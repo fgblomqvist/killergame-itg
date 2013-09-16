@@ -1,7 +1,7 @@
 var timelimit = 20;
 
 window.onload = function() {
-    if (window.location.pathname != '/') {
+    if (window.location.pathname != '/' && window.location.pathname != '/players' && window.location.pathname != '/gameover') {
         var counter = document.createElement('p');
         counter.className = 'counter'
         counter.innerText = timelimit.toString();
