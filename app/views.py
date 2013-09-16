@@ -63,11 +63,25 @@ def confirm():
     # give the killer cred
     killer.score += 1
 
+    if killer.id == target.offer_id:
+        # the killer has won the game
+        killer.offer_id = 1
+
+        # the target got on second place
+        target.offer_id = 2
+
+        db.session.commit()
+        return redirect(url_for('gameover'), code=307)
+
     # transfer the target
     killer.offer_id = target.offer_id
 
     # declare the victim as dead by setting its offer_id to None
     target.offer_id = None
+
+    # check if the target ended up at third place
+    if models.Player.query.filter(models.Player.offer_id is not None).count() == 2:
+        target.offer_id = 3
 
     # fetch the info about the new target
     target = models.Player.query.filter(models.Player.id == killer.offer_id).one()
@@ -75,3 +89,16 @@ def confirm():
     db.session.commit()
 
     return render_template('target_killed.html', player=killer, target=target)
+
+
+@app.route('/gameover')
+def gameover():
+
+    try:
+        winner = models.Player.query.filter(models.Player.offer_id == 1).one()
+        second = models.Player.query.filter(models.Player.offer_id == 2).one()
+        third = models.Player.query.filter(models.Player.offer_id == 3).one()
+    except orm.exc.NoResultFound:
+        return redirect(url_for('home'), code=307)
+
+    return render_template('gameover.html', winner=winner, second=second, third=third)

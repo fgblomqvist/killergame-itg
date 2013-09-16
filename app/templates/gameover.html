@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="large inset">Grattis</h1>
+    <h1 class="winner inset">{{ winner.name }}</h1>
+    <h1 class="large inset">Du har nu vunnit ITG Killergame!</h1>
+    <p class="other-winners-notice">Grattis även till följande spelare som fick den bittra andra- och tredjeplatsen:</p>
+    <p>2. {{ second.name }}</p>
+    <p>3. {{ third.name }}</p>
+    <p class="winner-notice">Meddela Friendsgruppen när du ser detta</p>
+{% endblock %}
