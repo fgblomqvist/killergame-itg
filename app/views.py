@@ -71,7 +71,7 @@ def confirm():
         target.offer_id = 2
 
         db.session.commit()
-        return redirect(url_for('gameover'), code=307)
+        return redirect(url_for('gameover'))
 
     # transfer the target
     killer.offer_id = target.offer_id
