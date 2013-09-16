@@ -53,3 +53,30 @@ h1 {
 .killed-msg {
     margin-bottom: 40px;
 }
+
+.other-winners-notice {
+    margin-top: 40px;
+}
+
+.winner-notice {
+    margin-top: 50px;
+}
+
+.error-notice {
+    margin-top: 30px;
+}
+
+.github-notice-wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+}
+
+.github-notice {
+    position: relative;
+    right: 50%;
+    bottom: 10px;
+    color: #222222;
+    white-space: nowrap;
+    font-size: 14px;
+}
