@@ -4,7 +4,8 @@ from app import app, db, models
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    alive_count = models.Player.query.filter(models.Player.offer_id != None).count()
+    return render_template('index.html', alive_count=alive_count)
 
 
 @app.route('/player', methods=['POST'])

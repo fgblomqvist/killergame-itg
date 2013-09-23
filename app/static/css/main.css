@@ -56,6 +56,12 @@ h1 {
     margin-top: 50px;
 }
 
+.alive-count {
+    margin-top: 50px;
+    font-size: 16px;
+    font-style: italic;
+}
+
 .killed-msg {
     margin-bottom: 40px;
 }
