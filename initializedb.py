@@ -6,7 +6,7 @@ from app import db, models
 argv = sys.argv
 db.create_all()
 
-if len(argv) != 2:
+if len(argv) < 2:
     sys.exit()
 
 if argv[1] == 'sample':
@@ -35,5 +35,17 @@ elif argv[1] == 'assign':
     for player in players:
         player.offer_id = previous.id
         previous = player
+
+    db.session.commit()
+
+else:
+    # import players from a csv file in the following format:
+    # Firstname;Lastname;SOD12345
+
+    with open(argv[1], mode='r', encoding='iso-8859-1') as f:
+        for line in f:
+            data = line.rstrip().split(';', 2)
+            player = models.Player(int(data[2][3:]), '{0} {1}'.format(data[0], data[1]))
+            db.session.add(player)
 
     db.session.commit()
