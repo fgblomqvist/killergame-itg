@@ -59,7 +59,8 @@ def confirm():
 
     # verify that the killer killed the right person
     if killer.offer_id != target_id:
-        return render_template('wrong_target.html', target=target)
+        right_target = models.Player.query.filter(models.Player.id == killer.offer_id).one()
+        return render_template('wrong_target.html', target=right_target)
 
     # give the killer cred
     killer.score += 1
