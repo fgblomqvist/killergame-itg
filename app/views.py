@@ -12,7 +12,7 @@ def home():
 def player():
 
     try:
-        player_id = int(request.form['player'])
+        player_id = int(request.form['player'][3:])
     except ValueError:
         return render_template('invalid_input.html')
 
@@ -42,7 +42,7 @@ def confirm():
 
     try:
         killer_id = int(request.form['player'])
-        target_id = int(request.form['target'])
+        target_id = int(request.form['target'][3:])
     except ValueError:
         return render_template('invalid_input.html')
 
