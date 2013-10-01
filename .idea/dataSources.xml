@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4066680148">
+  <component name="DataSourceManagerImpl" format="xml" hash="1487966546">
     <data-source source="LOCAL" name="Killergame Players" uuid="7ea7cd40-8591-40ad-aed7-bace1de3ead2">
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/players.sqlite</jdbc-url>
       <libraries>
         <library>
-          <url>file://$PROJECT_DIR$/../dbdrivers/sqlite-jdbc-3.7.2.jar</url>
+          <url>jar://$PROJECT_DIR$/../dbdrivers/sqlite-jdbc-3.7.2.jar!/</url>
+        </library>
+        <library>
+          <url>file://$PROJECT_DIR$/../dbdrivers/xerial-sqlite-license.txt</url>
         </library>
       </libraries>
     </data-source>

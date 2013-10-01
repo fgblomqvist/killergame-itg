@@ -7,7 +7,10 @@
     <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/players.sqlite</jdbc-url>
     <libraries>
       <library>
-        <url>file://$PROJECT_DIR$/../dbdrivers/sqlite-jdbc-3.7.2.jar</url>
+        <url>jar://$PROJECT_DIR$/../dbdrivers/sqlite-jdbc-3.7.2.jar!/</url>
+      </library>
+      <library>
+        <url>file://$PROJECT_DIR$/../dbdrivers/xerial-sqlite-license.txt</url>
       </library>
     </libraries>
     <schema name="" catalog=""/>
