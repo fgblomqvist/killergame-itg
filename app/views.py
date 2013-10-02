@@ -48,14 +48,14 @@ def confirm():
 
     # if the ids match, go back to home
     if killer_id == target_id:
-        return redirect(url_for('home'), code=307)
+        return redirect(url_for('home'), code=303)
 
     killer = models.Player.query.filter(models.Player.id == killer_id).one()
     target = models.Player.query.filter(models.Player.id == target_id).one()
 
     # if the killer is dead, go back
     if not killer.offer_id:
-        return redirect(url_for('home'), code=307)
+        return redirect(url_for('home'), code=303)
 
     # verify that the killer killed the right person
     if killer.offer_id != target_id:
@@ -73,7 +73,7 @@ def confirm():
         target.offer_id = 2
 
         db.session.commit()
-        return redirect(url_for('gameover'))
+        return redirect(url_for('gameover'), code=303)
 
     # transfer the target
     killer.offer_id = target.offer_id
@@ -101,6 +101,6 @@ def gameover():
         second = models.Player.query.filter(models.Player.offer_id == 2).one()
         third = models.Player.query.filter(models.Player.offer_id == 3).one()
     except orm.exc.NoResultFound:
-        return redirect(url_for('home'), code=307)
+        return redirect(url_for('home'), code=303)
 
     return render_template('gameover.html', winner=winner, second=second, third=third)
