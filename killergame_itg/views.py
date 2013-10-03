@@ -1,6 +1,6 @@
 from flask import render_template, request, url_for, redirect
 from sqlalchemy import orm
-from app import app, db, models
+from killergame_itg import app, db, models
 
 @app.route('/', methods=['GET', 'POST'])
 def home():

@@ -1,0 +1,2 @@
+recursive-include killergame_itg/static *
+recursive-include killergame_itg/templates *
