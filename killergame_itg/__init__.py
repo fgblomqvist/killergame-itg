@@ -8,4 +8,4 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'players.sqlite')
 db = SQLAlchemy(app)
 
-from app import views
+from killergame_itg import views

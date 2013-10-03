@@ -1,6 +1,6 @@
 import sys
 import random
-from app import db, models
+from killergame_itg import db, models
 
 
 argv = sys.argv

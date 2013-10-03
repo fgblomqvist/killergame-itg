@@ -1,4 +1,4 @@
-from app import db
+from killergame_itg import db
 
 
 class Player(db.Model):

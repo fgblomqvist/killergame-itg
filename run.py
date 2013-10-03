@@ -1,3 +1,3 @@
-from app import app
+from killergame_itg import app
 
 app.run(debug=True)
