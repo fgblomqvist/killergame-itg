@@ -1,4 +1,4 @@
-var timelimit = 20;
+var timelimit = 10;
 
 window.onload = function() {
     if (window.location.pathname != '/' && window.location.pathname != '/players' && window.location.pathname != '/gameover') {
