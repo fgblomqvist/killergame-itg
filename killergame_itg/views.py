@@ -50,8 +50,11 @@ def confirm():
     if killer_id == target_id:
         return redirect(url_for('home'), code=303)
 
-    killer = models.Player.query.filter(models.Player.id == killer_id).one()
-    target = models.Player.query.filter(models.Player.id == target_id).one()
+    try:
+        killer = models.Player.query.filter(models.Player.id == killer_id).one()
+        target = models.Player.query.filter(models.Player.id == target_id).one()
+    except orm.exc.NoResultFound:
+        return render_template('invalid_id.html')
 
     # if the killer is dead, go back
     if not killer.offer_id:
