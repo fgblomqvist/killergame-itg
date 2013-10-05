@@ -17,12 +17,12 @@ def player():
         return render_template('invalid_input.html')
 
     try:
-        player = models.Player.query.filter(models.Player.id == player_id).one()
+        player = get_player(player_id)
     except orm.exc.NoResultFound:
         return render_template('invalid_id.html')
 
     if player.offer_id:
-        target = models.Player.query.filter(models.Player.id == player.offer_id).one()
+        target = get_player(player.offer_id)
     else:
         target = None
 
@@ -51,8 +51,8 @@ def confirm():
         return redirect(url_for('home'), code=303)
 
     try:
-        killer = models.Player.query.filter(models.Player.id == killer_id).one()
-        target = models.Player.query.filter(models.Player.id == target_id).one()
+        killer = get_player(killer_id)
+        target = get_player(target_id)
     except orm.exc.NoResultFound:
         return render_template('invalid_id.html')
 
@@ -62,7 +62,7 @@ def confirm():
 
     # verify that the killer killed the right person
     if killer.offer_id != target_id:
-        right_target = models.Player.query.filter(models.Player.id == killer.offer_id).one()
+        right_target = get_player(killer.offer_id)
         return render_template('wrong_target.html', target=right_target)
 
     # give the killer cred
@@ -91,7 +91,7 @@ def confirm():
     db.session.commit()
 
     # fetch the info about the new target
-    target = models.Player.query.filter(models.Player.id == killer.offer_id).one()
+    target = get_player(killer.offer_id)
 
     return render_template('target_killed.html', player=killer, target=target)
 
@@ -100,10 +100,14 @@ def confirm():
 def gameover():
 
     try:
-        winner = models.Player.query.filter(models.Player.offer_id == 1).one()
-        second = models.Player.query.filter(models.Player.offer_id == 2).one()
-        third = models.Player.query.filter(models.Player.offer_id == 3).one()
+        winner = get_player(1)
+        second = get_player(2)
+        third = get_player(3)
     except orm.exc.NoResultFound:
         return redirect(url_for('home'), code=303)
 
     return render_template('gameover.html', winner=winner, second=second, third=third)
+
+
+def get_player(id):
+    return models.Player.query.filter(models.Player.id == id).one()
