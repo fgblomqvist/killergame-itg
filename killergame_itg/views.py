@@ -111,3 +111,14 @@ def gameover():
 
 def get_player(id):
     return models.Player.query.filter(models.Player.id == id).one()
+
+
+def kill_player(id):
+    # get the player that should be killed
+    player = get_player(id)
+    # get that player's killer
+    killer = models.Player.query.filter(models.Player.offer_id == player.id)
+
+    killer.offer_id = player.offer_id
+    player.offer_id = None
+    db.session.commit();
