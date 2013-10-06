@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Killergame-ITG',
-    version='1.0.3',
+    version='1.1.0',
     author='Fredrik Blomqvist',
     author_email='fredrik.blomqvist.95@gmail.com',
     packages=['killergame_itg'],
