@@ -109,7 +109,6 @@ def gameover():
     return render_template('gameover.html', winner=winner, second=second, third=third)
 
 
-# TODO: Add pretty errorpages
 @app.route('/manage', methods=['GET', 'POST'])
 def manage():
 
@@ -122,13 +121,13 @@ def manage():
         try:
             player_id = int(request.form['id'])
         except ValueError:
-            return 'Invalid input, id needs to be an integer!'
+            return render_template('generic_error.html', error_msg='Ogiltligt ID, det måste vara ett heltal!')
 
         try:
             kill_player(player_id)
-            return 'Successfully killed the player!'
+            return render_template('action_success.html')
         except orm.exc.NoResultFound:
-            return 'A player with that ID was not found!'
+            return render_template('generic_error.html', error_msg='En spelare med det ID\'t hittades inte!')
 
 
 def get_player(id):
