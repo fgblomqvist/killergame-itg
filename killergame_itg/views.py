@@ -143,3 +143,9 @@ def kill_player(id):
     killer.offer_id = player.offer_id
     player.offer_id = None
     db.session.commit();
+
+
+class PlayerAlreadyDead(Exception):
+
+    def __str__(self):
+        return 'The player is already dead!'
