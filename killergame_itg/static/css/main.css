@@ -109,3 +109,16 @@ hr {
     font-size: 24px;
     font-weight: bold;
 }
+
+.top-players {
+    width: 400px;
+    margin: 100px auto 20px;
+}
+
+.top-players h2 {
+    font-weight: bold;
+}
+
+.top-players table {
+    text-align: left;
+}

@@ -5,7 +5,8 @@ from killergame_itg import app, db, models
 @app.route('/', methods=['GET', 'POST'])
 def home():
     alive_count = models.Player.query.filter(models.Player.offer_id != None).count()
-    return render_template('index.html', alive_count=alive_count)
+    top_players = models.Player.query.filter(models.Player.score > 0).order_by(models.Player.score.desc()).limit(3).all()
+    return render_template('index.html', alive_count=alive_count, top_players=top_players)
 
 
 @app.route('/player', methods=['POST'])

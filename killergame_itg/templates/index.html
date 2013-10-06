@@ -3,6 +3,27 @@
     <h1 class="title inset">ITG Södertörn Killergame</h1>
     <p>Välkommen!</p>
     <p>Scanna ditt kort för att se information och verifiera mord</p>
+    {% if top_players|length >= 3 %}
+        <section class="top-players">
+            <h2 class="inset">Top 3</h2>
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Namn</th>
+                    <th>Kills</th>
+                    <th>Status</th>
+                </tr>
+                {% for player in top_players %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.score }}</td>
+                        <td>{{ 'Död' if player.offer_id == None else 'Lever' }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </section>
+    {% endif %}
     <p class="alive-count">{{ alive_count }} spelare lever</p>
     <form class="form-inline form-hidden" method="post" action="/player">
         <input class="form-control" type="text" name="player" autofocus>
