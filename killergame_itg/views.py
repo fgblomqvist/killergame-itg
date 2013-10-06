@@ -109,6 +109,28 @@ def gameover():
     return render_template('gameover.html', winner=winner, second=second, third=third)
 
 
+# TODO: Add pretty errorpages
+@app.route('/manage', methods=['GET', 'POST'])
+def manage():
+
+    if request.method == 'GET':
+        return render_template('manage.html')
+
+    action = request.form['action']
+
+    if action == 'kill':
+        try:
+            player_id = int(request.form['id'])
+        except ValueError:
+            return 'Invalid input, id needs to be an integer!'
+
+        try:
+            kill_player(player_id)
+            return 'Successfully killed the player!'
+        except orm.exc.NoResultFound:
+            return 'A player with that ID was not found!'
+
+
 def get_player(id):
     return models.Player.query.filter(models.Player.id == id).one()
 
