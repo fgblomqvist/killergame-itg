@@ -128,6 +128,8 @@ def manage():
             return render_template('action_success.html')
         except orm.exc.NoResultFound:
             return render_template('generic_error.html', error_msg='En spelare med det ID\'t hittades inte!')
+        except PlayerAlreadyDead:
+            return render_template('generic_error.html', error_msg='Spelaren du försökte döda är redan död!')
 
 
 def get_player(id):
@@ -137,12 +139,17 @@ def get_player(id):
 def kill_player(id):
     # get the player that should be killed
     player = get_player(id)
+
+    # verify that the player is not already dead
+    if player.offer_id is None:
+        raise PlayerAlreadyDead
+
     # get that player's killer
     killer = models.Player.query.filter(models.Player.offer_id == player.id)
 
     killer.offer_id = player.offer_id
     player.offer_id = None
-    db.session.commit();
+    db.session.commit()
 
 
 class PlayerAlreadyDead(Exception):
