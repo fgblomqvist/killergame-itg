@@ -4,7 +4,7 @@
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <synchronize>true</synchronize>
     <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/app/players.sqlite</jdbc-url>
+    <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/killergame_itg/players.sqlite</jdbc-url>
     <libraries>
       <library>
         <url>jar://$PROJECT_DIR$/../dbdrivers/sqlite-jdbc-3.7.2.jar!/</url>
