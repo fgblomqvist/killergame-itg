@@ -146,7 +146,7 @@ def kill_player(id):
         raise PlayerAlreadyDead
 
     # get that player's killer
-    killer = models.Player.query.filter(models.Player.offer_id == player.id)
+    killer = models.Player.query.filter(models.Player.offer_id == id).one()
 
     killer.offer_id = player.offer_id
     player.offer_id = None
